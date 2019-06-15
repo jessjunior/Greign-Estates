@@ -55,7 +55,9 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success">Register</button>
-                                </div>
+                                </div><br>
+                                <div class="text-center">
+                                	<p> Existing User: <a href="login.php">Login</a></div>
                             </form>
                         </div>
                     </div>

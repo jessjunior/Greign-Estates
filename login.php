@@ -65,6 +65,9 @@
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success"> Log in</button>
                                 </div>
+                                <br>
+                                <div class="text-center">
+                                	<p> New User: <a href="signup.php">Register</a></div>
                             </form>
                             <br>
                             
