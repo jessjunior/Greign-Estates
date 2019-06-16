@@ -281,10 +281,10 @@
 
                 <div class="row">
                     <div class="proerty-th">
-                        <div class="col-sm-6 col-md-3 p0">
+                        <div id="property1" class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
                                 <div class="item-thumb">
-                                    <a href="property-1.html" ><img src="assets/img/demo/property-1.jpg"></a>
+                                    <a href="property-1.php" ><img src="assets/img/demo/property-1.jpg"></a>
                                 </div>
                                 <div class="item-entry overflow">
                                     <h5><a href="property-1.html" >New Stylish villa  </a></h5>
@@ -294,6 +294,7 @@
                                 </div>
                             </div>
                         </div>
+                       
 
                         <div class="col-sm-6 col-md-3 p0">
                             <div class="box-two proerty-item">
