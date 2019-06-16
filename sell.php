@@ -7,6 +7,8 @@ $con= new DBConnector; //DB connection is made
 //Data insert code starts here
 
 if(isset($_POST['btn-save'])){
+	$email=$_POST['email'];
+	$password=$_POST['password'];
 	$city= $_POST['city'];
 	$title= $_POST['title'];
 	$beds= $_POST['beds'];
@@ -15,7 +17,7 @@ if(isset($_POST['btn-save'])){
 	$file=$_FILES["fileToUpload"]["tmp_name"];
 	
 	//Creating a user object
-	$user= new User ($city,$title,$beds,$baths,$price,$file);
+	$user= new User ($email,$password,$city,$title,$beds,$baths,$price,$file);
 	
 	//create object for file uploading
 	$uploader=new FileUploader;
@@ -33,11 +35,12 @@ if(isset($_POST['btn-save'])){
 	//check if save works successfully
 	
 	if($res){
-		echo "Save operation of user details was successful";
+		echo "Your property details have been uploaded successfully";
 	}
 	else {
 		echo "User details couldn't be saved!";
 	}
+	/*
 	if(file_upload_response){
 		echo "Save operation of image was successful";
 	}
@@ -45,7 +48,7 @@ if(isset($_POST['btn-save'])){
 	else {
 		echo "Couldn't save image!";
 	}
-	
+	*/
 }?>
 <!DOCTYPE html>
 <html>
@@ -77,7 +80,6 @@ if(isset($_POST['btn-save'])){
         
         <div class="topnav-centered">
 			<a href="index.php" >Home</a>
-			<a href="search.php">Search</a>
 			<a href="news.php">News</a>
 			<a href="about.php">About</a>
 			<a href="contact.php" >Contact</a>
@@ -124,25 +126,33 @@ if(!empty($_SESSION['form_errors'])){
                         <div class="col-md-12 col-xs-12 login-blocks">
                             <h2>Property Information : </h2> 
                            <form method="post" name="user_details" id="user_details" onsubmit="return validateForm()" enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>">
+								<div class="form-group">
+                                    <label for="city">Email</label>
+                                    <input type="text" class="form-control" name="email" />
+                                </div>
+								<div class="form-group">
+                                    <label for="city">Password</label>
+                                    <input type="password" class="form-control" name="password" />
+                                </div>
                                 <div class="form-group">
-                                    <label for="city">City</label>
-                                    <input type="text" name="city" />
+                                    <label for="password">City</label>
+                                    <input type="text" class="form-control" name="city" />
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Property Description</label>
-                                    <input type="text" name="title" />
+                                    <input type="text" class="form-control" name="title" />
                                 </div>
 								<div class="form-group">
                                     <label for="beds">No of rooms</label>
-                                    <input type="text" name="beds"  />
+                                    <input type="text" class="form-control" name="beds"  />
                                 </div>
 								<div class="form-group">
                                     <label for="baths">No of bathrooms</label>
-                                    <input type="text" name="baths" />
+                                    <input type="text" class="form-control" name="baths" />
                                 </div>
 								<div class="form-group">
                                     <label for="price">Quoting price</label>
-                                    <input type="text" name="price"  />
+                                    <input type="text" class="form-control" name="price"  />
                                 </div>
 								<div class="form-group">
                                     <label for="image">Image</label>

@@ -1,3 +1,40 @@
+<?php
+//ini_set('display_errors',1);
+include_once 'DBConnector.php';
+include_once 'newuser.php';
+
+$con= new DBConnector; //DB connection is made
+//Data insert code starts here
+
+if(isset($_POST['btn-save'])){
+	$firstname= $_POST['firstname'];
+	$lastname= $_POST['lastname'];
+	$email=$_POST['email'];
+	$password=$_POST['password'];
+
+
+	//Creating a user object
+	$user= new User ($firstname,$lastname,$email,$password);
+	
+	
+	if (!$user->validateForm($con->conn)){
+		$user->createFormErrorSessions($con->conn);
+		header("Refresh:0");
+		die();
+	}
+	$res= $user->save($con->conn);
+	//call uploadFile(), which returns
+	
+	//check if save works successfully
+	
+	if($res){
+		echo "Your details have been uploaded successfully";
+	}
+	else {
+		echo "User details couldn't be saved!";
+	}
+
+}?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +68,17 @@
 			<a href="contact.php">Contact</a>
             <a href="login.php" class="active">Login</a>
 		</div>
-        </div>
+    </div>
 </header>
+<div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">New account / Sign up </h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
 <div class="register-area" style="background-color: rgb(249, 249, 249);">
             <div class="container">
 
@@ -40,24 +86,26 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2>New account : </h2> 
-                            <form action="" method="post">
+                             <form method="post" name="user_details" id="user_details" onsubmit="return validateForm()" enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name">
+                                    <label for="name">First Name</label>
+                                    <input type="text" class="form-control" name="firstname">
+                                </div>
+								<div class="form-group">
+                                    <label for="name"> Last Name</label>
+                                    <input type="text" class="form-control" name="lastname">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email">
+                                    <input type="text" class="form-control" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password">
+                                    <input type="password" class="form-control" name="password">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success">Register</button>
-                                </div><br>
-                                <div class="text-center">
-                                	<p> Existing User: <a href="login.php">Login</a></div>
+                                    <button type="submit" name="btn-save" class="btn btn-success">Register</button>
+                                </div>
                             </form>
                         </div>
                     </div>

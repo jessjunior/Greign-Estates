@@ -168,7 +168,28 @@
                                 </div>
                             </div>
                             <!-- End video area  -->
-                            
+                            <div class="mapouter">
+	<div class="gmap_canvas">
+		<iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=nairobi&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+		</iframe>
+		<a href="https://www.crocothemes.net"></a>
+	</div>
+	
+	<style>
+	.mapouter{
+	position:relative;
+	text-align:right;
+	height:500px;
+	width:600px;
+	}
+	.gmap_canvas {
+	overflow:hidden;
+	background:none!important;
+	height:500px;
+	width:600px;
+	}
+	</style>
+</div>
                             
 
                             
@@ -220,9 +241,9 @@
                                             <ul class="dealer-contacts">                                       
                                                 <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
                                                 <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-                                                <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
+                                                <li><i class="pe-7s-call strong"> </i>+254 712 345 678</li>
                                             </ul>
-                                            <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+                                            <p>Connect with trustworthy property owners here...</p>
                                         </div>
 
                                     </div>

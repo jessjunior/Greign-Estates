@@ -8,23 +8,19 @@ class User implements Crud, Authenticator{
   private $password;
   private $user_id;
   private $con;
-  private $city;
-  private $title;
+  private $firstname;
+  private $lastname;
   private $beds;
   private $baths;
   private $price;
   private $filetoUpload;
 
 //Using class constructor to initialize values member variables cant be instantiated from elsewhere; They are private
-function __construct($email="",$password="",$city="",$title="",$beds="",$baths="",$price="",$filetoUpload=""){
+function __construct($firstname="",$lastname="",$email="",$password=""){
+$this->firstname = $firstname;
+$this->lastname = $lastname;
 $this->email = $email;
 $this->password = $password;
-$this->city = $city;
-$this->title = $title;
-$this->beds = $beds;
-$this->baths = $baths;
-$this->price = $price;
-$this->filetoUpload=$filetoUpload;
 
 }
 
@@ -40,6 +36,23 @@ $this->user_id= $user_id;
 public function getUserId(){
 return $this->user_id;
 }
+public function setFirstName ($firstname) {
+	$this->firstname = $firstname;
+}
+
+//username getter
+public function getFirstName(){
+	return $this->firstname;
+}
+public function setLastName($lastname){
+	$this->lastname= $lastname;
+}
+
+//password getter
+public function getLastName(){
+	return $this->lastname;
+}
+
 public function setEmail ($email) {
 	$this->email = $email;
 }
@@ -60,73 +73,26 @@ public function getPassword(){
 }
 
 //username setter
-public function setCity ($city) {
-	$this->username = $city;
-}
 
-//username getter
-public function getCity(){
-	return $this->city;
-}
 
 //password setter
-public function setTitle($title){
-	$this->password= $title;
-}
-
-//password getter
-public function getTitle(){
-	return $this->title;
-}
 
 //user id setter
-public function setBeds($beds){
-$this->beds= $beds;
-}
 
-//user id getter
-public function getBeds(){
-return $this->beds;
-}
-public function setBaths($baths){
-$this->baths= $baths;
-}
-
-//user id getter
-public function getBaths(){
-return $this->baths;
-}
-
-public function setPrice($price){
-$this->price= $price;
-}
-
-//user id getter
-public function getPrice(){
-return $this->price;
-}
 
 public function save($con){
+$firstname= $this->firstname;
+$lastname= $this->lastname;
 $email=$this->email;
 $password=$this->password;
-$city= $this->city;
-$title= $this->title;
-$beds= $this->beds;
-$baths= $this->baths;
-$price= $this->price;
-
-$file=$this->filetoUpload;
-$fileln= new FileUploader();
-$fileln->uploadFile();
 
 
-
-$res= mysqli_query($con, "INSERT INTO properties (email,password,city,title,beds,baths,price,image) VALUES ('$email','$password','$city','$title','$beds','$baths','$price','$file')") or die ("Error " . mysqli_error($con));
+$res= mysqli_query($con, "INSERT INTO users (first_name,last_name,email,password) VALUES ('$firstname','$lastname','$email','$password')") or die ("Error " . mysqli_error($con));
 return $res;
 }
 
 public function readAll(){
-  $res=mysqli_query($con,"SELECT * FROM properties");
+  $res=mysqli_query($con,"SELECT * FROM users");
   return mysqli_fetch_all($res, MYSQLI_ASSOC);
 }
 
@@ -154,11 +120,6 @@ public function validateForm(){
 	//Return true if the values are not empty
 	$email=$this->email;
 	$password=$this->password;
-	$city = $this->city;
-	$title = $this->title;
-	$beds = $this->beds;
-	$baths=$this->baths;
-	$price=$this->price;
 	
 	if ($email=""  ||$password=""){
 		return false;
