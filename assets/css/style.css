@@ -2027,7 +2027,7 @@ single property page
 }
 .s-property-title {
     margin-bottom: 15px;
-    color: #FFA500;
+    color: #4CAF50;
     font-size: 18px;
 }
 
@@ -2149,8 +2149,8 @@ single property page
     display: inline-table;
 }
 .property-features ul li a::after{
-    content: "/";
-    color: #FDC600;
+    content: ",";
+    color: #4CAF50;
     font-weight: bold;
     padding-left: 5px;
     font-size: 14px;
