@@ -1,3 +1,26 @@
+<?php
+    require 'common/init.php';
+	if(isset($_POST['btn-login'])){
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+
+	$query = $db->query("SELECT * from users  WHERE email = '$email' AND password = '$password' ");
+
+	if($query->rowCount() > 0){
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		foreach($result as $data){
+           $id = $data->id;
+           $email = $data->email;
+
+           $_SESSION['email'] = $email;
+           
+		}
+        echo 'true';
+		header("location: index.php");
+	}else{
+        echo 'false';
+	}}
+	?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,4 +106,32 @@
             
         </div>
 </body>
+
+<script>
+$(document).ready(function(){
+$("#login_form1").submit(function(e){
+		e.preventDefault();
+		var formData = $(this).serialize();
+		$.ajax({
+			type: "POST",
+			url: "login.php",
+			data: formData,
+			success: function(html){
+			if(html=='true')
+			{
+
+				$.jGrowl("Loading Files Please Wait...", { sticky: true });
+				$.jGrowl("Welcome Administrator", { header: 'Access Granted' });
+				var delay = 1000;
+					setTimeout(function(){ window.location = 'dashboard.php'  }, delay);  
+			}else
+			{
+			    $.jGrowl("Please Check your username and Password", { header: 'Login Failed' });
+			}
+			}
+		});
+		return false;
+	});
+});
+</script>
 </html>
