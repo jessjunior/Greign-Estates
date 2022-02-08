@@ -2,7 +2,7 @@
 define('DB_SERVER', 'localhost'); //we use the local machine
 define('DB_USER', 'root'); //user is root. However you can create another user
 define('DB_PASS' , ''); //data has not been set
-define('DB_NAME', 'btc3205'); //The database name.
+define('DB_NAME', 'greign_estates'); //The database name.
 
 class DBConnector{
 
